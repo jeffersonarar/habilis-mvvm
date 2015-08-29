@@ -1,0 +1,12 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/template.zul"?>
+<zk>
+	<div self="@define(content)" align="center"  style="position: relative; top: 30px"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm')@init('br.com.ViewModel.MatrizViewModel')"
+		validationMessages="@id('vmsgs')"
+		form="@id('fx') @load(vm.entity) @save(vm.entity, before='salvar')">
+		
+		<include src="/paginas/matriz/frmMatriz.zul"/>	
+		
+    </div>
+</zk>

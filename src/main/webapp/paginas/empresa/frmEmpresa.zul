@@ -1,0 +1,90 @@
+
+<zk>
+
+	<grid width="750px" height="250px" sizedByContent="true" style=" top: 2px;">
+		<auxhead>
+			<auxheader label="EMPRESA" align="center" colspan="4" />
+		</auxhead>
+
+
+		<columns>
+			<column width="" align="center"></column>
+			<column align="left"></column>
+			<column align="left"></column>
+			<column align="left"></column>
+		</columns>
+		<rows>
+
+			<row>
+				<cell sclass="row-title">
+					<label style="color: red" value="*" />
+					Nome:
+				</cell>
+				<cell>
+					<textbox  value="@bind(fx.nome)" />
+				</cell>
+
+				<cell sclass="row-title">
+					<label style="color: red" value="*" />
+					Telefone :
+				</cell>
+				<cell>
+					<textbox id="fldTelefone" value="@bind(fx.telefone)" />
+				</cell>
+			</row>
+			<row>
+
+				<cell sclass="row-title">
+					<label style="color: red" value="*" />
+					CNPJ:
+				</cell>
+				<cell>
+					<textbox id="fldCGC" value="@bind(fx.cnpj)"/>
+				</cell>
+
+				<cell sclass="row-title">
+					<label style="color: red" value="*" />
+					Código empresa :
+				</cell>
+				<cell>
+					<textbox value="@bind(fx.codigo_atividade_empresa)" />
+				</cell>
+
+			</row>
+			<row>
+				<cell sclass="row-title">
+					<label style="color: red" value="*" />
+					Email:
+				</cell>
+				<cell>
+					<textbox placeholder="email@email.com" value="@bind(fx.email)" />
+				</cell>
+			</row>
+			<row>
+
+			</row>
+
+			<row>
+				<cell>
+					<button label="Cancelar"
+						onClick="@command('fecharWindow')" width="100px" height="30px" />
+				</cell>
+				<cell>
+					<button label="Salvar"
+						onClick="@command('salvar')" width="100px" height="30px" />
+				</cell>
+
+				<cell sclass="row-title" style="color: red">
+					* Campos obrigatórios
+				</cell>
+			</row>
+		</rows>
+	</grid>
+	
+	<script type="text/javascript">
+        zk.afterMount(function() {
+	    	jq("$fldTelefone").mask("(99)9999-9999");
+	    	jq("$fldCGC").mask("99.999.999/9999-99");
+	    });
+   	</script>
+</zk>

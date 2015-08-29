@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <language-addon>
+     <addon-name>myaddon</addon-name>
+     <language-name>xul/html</language-name>
+     <stylesheet href="/css/style.css" type="text/css" />
+     <javascript src="/js/jquery.maskedinput-1.3.js" />
+     <javascript src="/js/watermarkinput.js" />
+ 
+     <component>
+         <component-name>fbutton</component-name>
+         <extends>button</extends>
+         <property>
+             <property-name>mold</property-name>
+             <property-value>trendy</property-value>
+         </property>
+         <property>
+             <property-name>sclass</property-name>
+             <property-value>mybutton blue medium bigrounded</property-value>
+         </property>
+     </component>
+ 
+ 
+     <component>
+         <component-name>Addbutton</component-name>
+         <extends>button</extends>
+         <property>
+             <property-name>mold</property-name>
+             <property-value>trendy</property-value>
+         </property>
+         <property>
+             <property-name>sclass</property-name>
+             <property-value>mybutton green small bigrounded</property-value>
+         </property>
+     </component>
+ 
+ 
+     <component>
+         <component-name>GoButton</component-name>
+         <extends>button</extends>
+         <property>
+             <property-name>mold</property-name>
+             <property-value>trendy</property-value>
+         </property>
+         <property>
+             <property-name>sclass</property-name>
+             <property-value>mybutton roundsearch</property-value>
+         </property>
+     </component>
+ 
+ 
+     <component>
+         <component-name>flabeltitle</component-name>
+         <extends>label</extends>
+         <property>
+             <property-name>sclass</property-name>
+             <property-value>flbltitle</property-value>
+         </property>
+     </component>
+ 
+     <component>
+         <component-name>fImageEdit</component-name>
+         <extends>image</extends>
+         <property>
+             <property-name>sclass</property-name>
+             <property-value>fimageedit</property-value>
+         </property>
+         <property>
+             <property-name>tooltiptext</property-name>
+             <property-value>Edit</property-value>
+         </property>
+     </component>
+ 
+ 
+     <component>
+         <component-name>fImageDelete</component-name>
+         <extends>image</extends>
+         <property>
+             <property-name>sclass</property-name>
+             <property-value>fimageDelete</property-value>
+         </property>
+         <property>
+             <property-name>tooltiptext</property-name>
+             <property-value>Delete</property-value>
+         </property>
+     </component>
+ 
+ 
+     <component>
+         <component-name>fgrid</component-name>
+         <extends>grid</extends>
+         <property>
+             <property-name>sclass</property-name>
+             <property-value>fgrid</property-value>
+         </property>
+     </component>
+ 
+ 
+     <component>
+         <component-name>ftextbox</component-name>
+         <extends>textbox</extends>
+         <property>
+             <property-name>sclass</property-name>
+             <property-value>ftextbox</property-value>
+         </property>
+     </component>
+ 
+     <component>
+         <component-name>flabel</component-name>
+         <extends>label</extends>
+         <property>
+             <property-name>sclass</property-name>
+             <property-value>flabel</property-value>
+         </property>
+     </component>
+ 
+ 
+ </language-addon>

@@ -1,0 +1,12 @@
+<zk>
+	<window  id="idWindowAlterar" self="@define(content)" sclass="mymodal" minimizable="false" mode="modal" maximizable="false"
+		closable="true" position="center"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm')@init('br.com.ViewModel.AtividadeViewModel')"
+		validationMessages="@id('vmsgs')"
+		form="@id('fx') @load(vm.entity) @save(vm.entity, before='salvar')">
+		
+		<include src="/paginas/empresa/frmAtividade.zul"/>	
+		
+    </window>
+</zk>

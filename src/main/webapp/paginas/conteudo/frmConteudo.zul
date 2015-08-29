@@ -1,0 +1,63 @@
+
+<zk>
+
+	<grid width="423px" height="250px" sizedByContent="true" style=" top: 2px;">
+		<auxhead>
+			<auxheader label="CONTEÚDO" align="center" colspan="3" />
+		</auxhead>
+
+
+		<columns>
+			<column width="" align="center"></column>
+			<column align="left"></column>
+			<column width="140px" align="left"></column>
+		</columns>
+		<rows>
+
+			<row>
+				<cell sclass="row-title">
+					<label style="color: red" value="*" />
+					Matriz:
+				</cell>
+				<cell>
+					<combobox width="160px" value="@bind(fx.matriz)" />
+				</cell>
+			</row>
+			<row>
+
+				<cell sclass="row-title">
+					<label style="color: red" value="*" />
+					Disciplina:
+				</cell>
+				<cell>
+					<combobox width="160px" id="fldDisciplina" value="@bind(fx.disciplina)"/>
+				</cell>
+			</row>
+			
+			<row>
+			<cell sclass="row-title">
+					<label style="color: red" value="*" />
+					Nome:
+				</cell>
+				<cell>
+					<textbox id="fldNome" value="@bind(fx.nome)" />
+				</cell>
+			</row>
+
+			<row>
+				<cell>
+					<button label="Cancelar"
+						onClick="@command('')" width="100px" height="30px" />
+				</cell>
+				<cell>
+					<button label="Salvar"
+						onClick="@command('')" width="100px" height="30px" />
+				</cell>
+				<cell sclass="row-title" style="color: red">
+					* Campos obrigatórios
+				</cell>
+			</row>
+		</rows>
+	</grid>
+	
+</zk>

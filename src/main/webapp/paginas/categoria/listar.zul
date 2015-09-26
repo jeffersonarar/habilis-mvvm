@@ -1,0 +1,52 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/template.zul"?>
+<zk>
+	<div self="@define(content)" apply="org.zkoss.bind.BindComposer"
+		style="position: relative; top: 30px"
+		viewModel="@id('vm') @init('br.com.ViewModel.CategoriaViewModel')"
+		align="center">
+		<vlayout style="top: 40% ">
+			<label value="Lista de categorias" style="font-size: 30px;" />
+			<div>
+
+
+				<hbox align="center">
+					<label value="Ativos" />
+					<checkbox checked="@bind(vm.ativos)" />
+					<textbox value="@bind(vm.parametro)" />
+					<button image="/widgets/images/lupa.png"
+						onClick="@command('listar')" />
+					<fbutton
+						onClick="@command('novo')" label="Novo" />
+
+				</hbox>
+			</div>
+			<listbox model="@bind(vm.categoriaList)"
+				emptyMessage="Nenhuma categoria encontrada." width="900px"
+				selectedItem="@bind(vm.selectedEntity)" style="margin-top:10px"
+				mold="paging" pageSize="5">
+				<listhead>
+					<listheader label="Nome" align="center"
+						sort="auto(nome)" />
+					<listheader label="Descrição" align="center"
+						sort="auto(descricao)" />
+					<listheader label="Ações" align="center" />
+				</listhead>
+				<template name="model">
+					<listitem>
+						<listcell label="@bind(each.nome)" ></listcell>
+						<listcell label="@bind(each.descricao)"></listcell>
+						<listcell>
+
+							<button image="/widgets/images/excluir.png"
+								onClick="@command('desativar') @global-command('refresh')" />
+							<button image="/widgets/images/edit.png"
+								onClick="@command('telaAlterar') @global-command('refresh')" />
+						</listcell>
+
+					</listitem>
+				</template>
+			</listbox>
+		</vlayout>
+	</div>
+
+</zk>

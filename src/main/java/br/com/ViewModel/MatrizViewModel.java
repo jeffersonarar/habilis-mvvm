@@ -22,12 +22,12 @@ import br.com.Controller.MatrizController;
 import br.com.core.Interface.IModel;
 import br.com.core.Model.Empresa;
 import br.com.core.Model.Matriz;
+import br.com.core.Util.Retorno;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class MatrizViewModel extends GenericViewModel {
 
 	private List<?> matrizList;
-	
 	
 	@Init
 	public void initSetup(@ContextParam(ContextType.VIEW) Component view,
@@ -93,5 +93,11 @@ public class MatrizViewModel extends GenericViewModel {
 		this.matrizList = matrizList;
 		lastUpdate = Calendar.getInstance().getTime();
 	}
+
+	@Override
+	protected void save(IModel imodel) {
+
+	}
+
 
 }

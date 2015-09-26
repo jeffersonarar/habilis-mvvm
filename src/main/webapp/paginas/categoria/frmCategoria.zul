@@ -10,7 +10,6 @@
 		<columns>
 			<column width="" align="center"></column>
 			<column align="left"></column>
-			<column width="140px" align="left"></column>
 		</columns>
 		<rows>
 
@@ -26,26 +25,25 @@
 			<row>
 
 				<cell sclass="row-title">
-					<label style="color: red" value="*" />
 					Descrição:
 				</cell>
 				<cell>
 					<textbox width="160px" rows="3" id="fldDescricao" value="@bind(fx.descricao)"/>
 				</cell>
 			</row>
-			
+			<row>
+				<cell sclass="row-title" align="right" style="color: red">
+					* Campos obrigatórios
+				</cell>
+			</row>		
 			<row>
 				<cell>
 					<button label="Cancelar"
-						onClick="@command('')" width="100px" height="30px" />
+						onClick="@command('fecharWindow')" width="100px" height="30px" />
 				</cell>
 				<cell>
 					<button label="Salvar"
-						onClick="@command('')" width="100px" height="30px" />
-				</cell>
-
-				<cell sclass="row-title" style="color: red">
-					* Campos obrigatórios
+						onClick="@command('salvar')" width="100px" height="30px" />
 				</cell>
 			</row>
 		</rows>

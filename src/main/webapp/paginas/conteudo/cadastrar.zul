@@ -2,11 +2,11 @@
 <zk>
 	<div self="@define(content)" align="center"  style="position: relative; top: 30px"
 		apply="org.zkoss.bind.BindComposer"
-		viewModel="@id('vm')@init('br.com.ViewModel.EmpresaViewModel')"
+		viewModel="@id('vm')@init('br.com.ViewModel.ConteudoViewModel')"
 		validationMessages="@id('vmsgs')"
 		form="@id('fx') @load(vm.entity) @save(vm.entity, before='salvar')">
 		
-		<include src="/paginas/empresa/frmEmpresa.zul"/>	
+		<include src="/paginas/conteudo/frmConteudo.zul"/>	
 		
     </div>
 </zk>

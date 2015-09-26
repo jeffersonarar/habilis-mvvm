@@ -14,16 +14,14 @@ import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.Selectors;
-import org.zkoss.zk.ui.select.annotation.Wire;
-import org.zkoss.zul.Button;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Window;
-import org.zkoss.zul.impl.InputElement;
+
 
 import br.com.Controller.EmpresaController;
 import br.com.core.Interface.IModel;
 import br.com.core.Model.Empresa;
-import br.com.core.Util.Retorno;
+
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class EmpresaViewModel extends GenericViewModel {
@@ -96,6 +94,13 @@ public class EmpresaViewModel extends GenericViewModel {
 		empresaList = super.listar(getEntity());
 		return (List<IModel<?>>) empresaList;
 	}
+
+	@Override
+	protected void save(IModel imodel) {
+		// TODO Auto-generated method stub
+
+	}
+
 
 
 }

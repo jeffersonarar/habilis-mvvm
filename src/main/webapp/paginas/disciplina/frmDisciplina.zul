@@ -1,12 +1,8 @@
-
 <zk>
-
 	<grid width="423px" height="250px" sizedByContent="true" style=" top: 2px;">
 		<auxhead>
 			<auxheader label="DISCIPLINA" align="center" colspan="3" />
 		</auxhead>
-
-
 		<columns>
 			<column width="" align="center"></column>
 			<column align="left"></column>
@@ -18,10 +14,16 @@
 			
 				<cell sclass="row-title">
 					<label style="color: red" value="*" />
-					Matriz :
+					Matríz:
 				</cell>
 				<cell>
-					<combobox width="160px" id="fldMatriz" value="@bind(fx.matriz)" />
+            	 <listbox   model="@load(vm.matrizList)"
+                        mold="select" width="75%"
+                        selectedItem="@save(vm.matrizSelecionada)" >
+                        <template name="model" >
+                            <listitem label="@load(each.nome)"/>
+                        </template>
+                  </listbox>
 				</cell>
 			</row>
 			
@@ -31,8 +33,7 @@
 					Período:
 				</cell>
 				<cell>
-					<combobox  id="fldPeriodo" width="160px" value="@bind(fx.periodo)" />
-					
+					<textbox id="fldPeriodo" value="@bind(fx.periodo)"/>
 				</cell>
 			</row>
 			<row>
@@ -51,17 +52,17 @@
 					CH:
 				</cell>
 				<cell>
-					<textbox  value="@bind(fx.ch)" />
+					<textbox  value="@bind(fx.carga_horaria_total)" />
 				</cell>
 			</row>
 			<row>
 				<cell>
 					<button label="Cancelar"
-						onClick="@command('')" width="100px" height="30px" />
+						onClick="@command('fecharWindow')" width="100px" height="30px" />
 				</cell>
 				<cell>
 					<button label="Salvar"
-						onClick="@command('')" width="100px" height="30px" />
+						onClick="@command('salvar')" width="100px" height="30px" />
 				</cell>
 
 				<cell sclass="row-title" style="color: red">
@@ -70,5 +71,4 @@
 			</row>
 		</rows>
 	</grid>
-
 </zk>

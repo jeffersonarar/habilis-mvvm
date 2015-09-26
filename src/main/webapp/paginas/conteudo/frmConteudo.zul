@@ -1,16 +1,14 @@
-
 <zk>
 
-	<grid width="423px" height="250px" sizedByContent="true" style=" top: 2px;">
+	<grid width="423px" height="250px" sizedByContent="true"
+		style=" top: 2px;">
 		<auxhead>
 			<auxheader label="CONTEÚDO" align="center" colspan="3" />
 		</auxhead>
-
-
 		<columns>
 			<column width="" align="center"></column>
 			<column align="left"></column>
-			<column width="140px" align="left"></column>
+
 		</columns>
 		<rows>
 
@@ -20,22 +18,32 @@
 					Matriz:
 				</cell>
 				<cell>
-					<combobox width="160px" value="@bind(fx.matriz)" />
+					<combobox onChange="@command('getDisciplinaList')"
+						model="@load(vm.matrizList)" width="75%"
+						selectedItem="@save(vm.matrizSelecionada)">
+						<template name="model">
+							<comboitem label="@load(each.nome)" />
+						</template>
+					</combobox>
 				</cell>
 			</row>
 			<row>
-
 				<cell sclass="row-title">
 					<label style="color: red" value="*" />
 					Disciplina:
 				</cell>
 				<cell>
-					<combobox width="160px" id="fldDisciplina" value="@bind(fx.disciplina)"/>
+					<combobox model="@load(vm.disciplinaList)"
+						width="75%" selectedItem="@save(vm.disciplinaSelecionada)">
+						<template name="model">
+							<comboitem label="@load(each.nome)" />
+						</template>
+					</combobox>
 				</cell>
 			</row>
-			
+
 			<row>
-			<cell sclass="row-title">
+				<cell sclass="row-title">
 					<label style="color: red" value="*" />
 					Nome:
 				</cell>
@@ -45,19 +53,24 @@
 			</row>
 
 			<row>
-				<cell>
-					<button label="Cancelar"
-						onClick="@command('')" width="100px" height="30px" />
-				</cell>
-				<cell>
-					<button label="Salvar"
-						onClick="@command('')" width="100px" height="30px" />
+				<cell sclass="row-title" >
 				</cell>
 				<cell sclass="row-title" style="color: red">
 					* Campos obrigatórios
 				</cell>
 			</row>
+			<row>
+
+				<cell>
+					<button label="Cancelar"
+						onClick="@command('fecharWindow')" width="100px" height="30px" />
+				</cell>
+				<cell>
+					<button label="Salvar" onClick="@command('salvar')"
+						width="100px" height="30px" />
+				</cell>
+			</row>
 		</rows>
 	</grid>
-	
+
 </zk>

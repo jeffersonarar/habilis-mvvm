@@ -5,7 +5,6 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
 	id="WebApp_ID" 
 	version="2.5">
-	
   <display-name>Fisheye Menu</display-name>
   <listener>
     <description>
@@ -51,4 +50,5 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>template.zul</welcome-file>
   </welcome-file-list>
+ 
 </web-app>

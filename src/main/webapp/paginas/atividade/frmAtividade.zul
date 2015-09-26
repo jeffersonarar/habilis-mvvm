@@ -1,32 +1,30 @@
 
 <zk>
-
 	<grid width="423px" height="300px" sizedByContent="true" style=" top: 2px;">
 		<auxhead>
 			<auxheader label="ATIVIDADE" align="center" colspan="5" />
 		</auxhead>
-
-
 		<columns>
 			<column width="" align="center"></column>
-			<column align="left"></column>
-			<column width="140px" align="left"></column>
-			
-		
+			<column align="left"></column>	
 		</columns>
 		<rows>
-
 			<row>
-				<cell sclass="row-title">
+				<cell sclass="row-title" align="left">
 					<label style="color: red" value="*" />
 					Categoria:
 				</cell>
 				<cell>
-					<combobox width="160px" id="fldCat" value="@bind(fx.lstCategoria)"/>
+					<combobox model="@load(vm.categoriaList)"
+						width="75%" selectedItem="@save(vm.categoriaSelecionada)">
+						<template name="model">
+							<comboitem label="@load(each.nome)" />
+						</template>
+					</combobox>
 				</cell>
 			</row>
 			<row>
-				<cell sclass="row-title">
+				<cell sclass="row-title" align="letf">
 					<label style="color: red" value="*" />
 					Nome:
 				</cell>
@@ -36,8 +34,7 @@
 
 			</row>
 			<row>
-				<cell sclass="row-title">
-					<label style="color: red" value="*" />
+				<cell sclass="row-title" align="letf">
 					Descrição:
 				</cell>
 				<cell>
@@ -47,17 +44,20 @@
 			
 
 			<row>
+				<cell sclass="row-title" >
+				</cell>
+				<cell sclass="row-title" style="color: red" align="right">
+					* Campos obrigatórios
+				</cell>
+			</row>
+			<row>
 				<cell>
 					<button label="Cancelar"
-						onClick="@command('')" width="100px" height="30px" />
+						onClick="@command('fecharWindow')" width="100px" height="30px" />
 				</cell>
 				<cell>
 					<button label="Salvar"
-						onClick="@command('')" width="100px" height="30px" />
-				</cell>
-
-				<cell sclass="row-title" style="color: red">
-					* Campos obrigatórios
+						onClick="@command('salvar')" width="100px" height="30px" />
 				</cell>
 			</row>
 		</rows>

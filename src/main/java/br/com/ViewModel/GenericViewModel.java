@@ -1,39 +1,32 @@
 package br.com.ViewModel;
 
-import java.util.Calendar;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.persistence.Temporal;
+
+
 
 import org.zkoss.bind.annotation.Command;
-import org.zkoss.bind.annotation.ContextParam;
-import org.zkoss.bind.annotation.ContextType;
-import org.zkoss.bind.annotation.ExecutionArgParam;
-import org.zkoss.bind.annotation.GlobalCommand;
 import org.zkoss.bind.annotation.Init;
-import org.zkoss.bind.annotation.NotifyChange;
-import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
-import org.zkoss.zk.ui.select.Selectors;
-import org.zkoss.zk.ui.select.annotation.Wire;
-import org.zkoss.zul.Button;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Window;
-import org.zkoss.zul.impl.InputElement;
+
+
+
 
 import br.com.Controller.GenericController;
 import br.com.Interface.IViewModel;
 import br.com.Util.MensagemNotificacao;
-import br.com.Util.Tempo;
 import br.com.core.Interface.IModel;
-import br.com.core.Model.Empresa;
+import br.com.core.Model.Matriz;
 import br.com.core.Util.Retorno;
 
-public abstract class GenericViewModel<M extends IModel<?>, C extends GenericController<M>>
+public abstract class GenericViewModel<M extends IModel<?>, C extends GenericController<M>> extends CRUDComponents
 		implements IViewModel {
 
 	private M entity;
@@ -46,10 +39,20 @@ public abstract class GenericViewModel<M extends IModel<?>, C extends GenericCon
 	private Window win;
 	private String recordMode;
 	private List<?> entityList;
+	private Matriz matriz;
+	protected abstract void save(IModel<?> imodel);
+
+	@Command
+	public void telaMatriz() {
+		final HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("EntityObject", this.matriz);
+		Executions.createComponents("/paginas/matriz/alterar.zul", null, map);
+	}
 
 	@Init
 	public void init() {
 		setEntity(getObject());
+		entity = getEntity();
 
 	}
 
@@ -59,6 +62,9 @@ public abstract class GenericViewModel<M extends IModel<?>, C extends GenericCon
 
 	MensagemNotificacao msgNotificacao = new MensagemNotificacao();
 
+	
+
+	
 	@Command
 	public void novo() {
 		String nomeClasse = getEntity().getNameClass().toLowerCase();
@@ -68,6 +74,7 @@ public abstract class GenericViewModel<M extends IModel<?>, C extends GenericCon
 	@Command
 	public Retorno salvar(IModel<?> imodel) {
 		Retorno ret;
+		save(getEntity());
 		if (getSelectedEntity() != null) {
 			ret = getControl().alterar(getSelectedEntity());
 			if(ret.isValid() != true){
@@ -77,8 +84,6 @@ public abstract class GenericViewModel<M extends IModel<?>, C extends GenericCon
 				fecharWindow();
 			}
 			
-			
-	
 		} else {
 			ret = getControl().salvar(getEntity());
 			msgNotificacao.mensagem(ret.gettipoMensagem(), ret.getMensagem());

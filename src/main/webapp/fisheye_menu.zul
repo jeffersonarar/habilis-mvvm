@@ -1,21 +1,34 @@
-<div height="450px"   apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('br.com.ViewModel.ViewModelComponent')">
+<div height="450px" apply="org.zkoss.bind.BindComposer"
+	viewModel="@id('vm') @init('br.com.ViewModel.ViewModelComponent')">
 	<style>
-		.fisheyeDemo { 
-			margin : 5px 40px; 
-			position : relative;
-		}
+		.fisheyeDemo { margin : 5px 40px; position : relative; }
 	</style>
-	<fisheyebar id="fisheyebar" sclass="fisheyeDemo"  
-		itemWidth="80" itemHeight="80" itemMaxHeight="160" itemMaxWidth="160">
-		<fisheye  tooltiptext="Estagiários" image="/widgets/menu/fisheye_menu/img/1.jpg"/>
-		<fisheye  tooltiptext="Atividades" image="/widgets/menu/fisheye_menu/img/2.jpg" />
-		<fisheye onClick="@command('redirectEmpresa')" tooltiptext="Empresa" image="/widgets/menu/fisheye_menu/img/3.png" />
-		<fisheye onClick="@command('redirectMatriz')" tooltiptext="Matriz" image="/widgets/menu/fisheye_menu/img/4.gif" />
-		<fisheye  tooltiptext="Disciplinas" image="/widgets/menu/fisheye_menu/img/5.png" />
-		<fisheye  tooltiptext="Relatórios" image="/widgets/menu/fisheye_menu/img/6.jpg" />
-		<fisheye  tooltiptext="Conteúdo" image="/widgets/menu/fisheye_menu/img/7.jpg" />
-		<fisheye  tooltiptext="Categoria" image="/widgets/menu/fisheye_menu/img/8.jpg" />
-		<fisheye  tooltiptext="Contrato" image="/widgets/menu/fisheye_menu/img/10.png" />
-		<fisheye  tooltiptext="Configurações" image="/widgets/menu/fisheye_menu/img/9.jpg" />
+	<fisheyebar id="fisheyebar" sclass="fisheyeDemo" itemWidth="80"
+		itemHeight="80" itemMaxHeight="160" itemMaxWidth="160">
+		<fisheye onClick="@command('redirectEstagiario')"
+			tooltiptext="Estagiários"
+			image="/widgets/menu/fisheye_menu/img/1.jpg" />
+		<fisheye onClick="@command('redirectAtividades')"
+			tooltiptext="Atividades"
+			image="/widgets/menu/fisheye_menu/img/2.jpg" />
+		<fisheye onClick="@command('redirectEmpresa')"
+			tooltiptext="Empresa" image="/widgets/menu/fisheye_menu/img/3.png" />
+		<fisheye onClick="@command('redirectMatriz')"
+			tooltiptext="Matriz" image="/widgets/menu/fisheye_menu/img/4.gif" />
+		<fisheye onClick="@command('redirectDisciplinas')"
+			tooltiptext="Disciplinas"
+			image="/widgets/menu/fisheye_menu/img/5.png" />
+		<fisheye onClick="@command('redirectRelatorios')"
+			tooltiptext="Relatórios"
+			image="/widgets/menu/fisheye_menu/img/6.jpg" />
+		<fisheye onClick="@command('redirectConteudo')"
+			tooltiptext="Conteúdo" image="/widgets/menu/fisheye_menu/img/7.jpg" />
+		<fisheye onClick="@command('redirectCategoria')"
+			tooltiptext="Categoria" image="/widgets/menu/fisheye_menu/img/8.jpg" />
+		<fisheye onClick="@command('redirectContrato')"
+			tooltiptext="Contrato" image="/widgets/menu/fisheye_menu/img/10.png" />
+		<fisheye onClick="@command('redirectConfiguracoes')"
+			tooltiptext="Configurações"
+			image="/widgets/menu/fisheye_menu/img/9.jpg" />
 	</fisheyebar>
 </div>

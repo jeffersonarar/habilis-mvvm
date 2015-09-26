@@ -6,7 +6,7 @@
 		validationMessages="@id('vmsgs')"
 		form="@id('fx') @load(vm.entity) @save(vm.entity, before='salvar')">
 		
-		<include src="/paginas/empresa/frmAtividade.zul"/>	
+		<include src="/paginas/atividade/frmAtividade.zul"/>	
 		
     </window>
 </zk>

@@ -1,0 +1,200 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/template.zul"?>
+<zk>
+	<div self="@define(content)" align="center"
+		style="position: relative; top: 30px"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm')@init('br.com.ViewModel.ContratoEstagioViewModel')"
+		validationMessages="@id('vmsgs')"
+		form="@id('fx') @load(vm.entity) @save(vm.entity, before='salvar')">
+
+		<grid width="750px" height="250px" sizedByContent="true"
+			style=" top: 2px;">
+			<auxhead>
+				<auxheader label="CONTRATO" align="center" colspan="4" />
+			</auxhead>
+
+
+			<columns>
+				<column width="" align="left"></column>
+				<column width="230px" align="left"></column>
+				<column align="left"></column>
+				<column align="left"></column>
+			</columns>
+			<rows>
+
+				<row>
+					<cell sclass="row-title">
+						<label style="color: red" value="*" />
+						Aluno:
+					</cell>
+
+					<cell>
+
+						<hlayout>
+							<textbox id="nomeEstagiario" tabbable="true"
+								disabled="true" tabindex="11" />
+							<button image="/widgets/images/lupa.png"
+								onClick="@command('buscarEstagiario')" />
+						</hlayout>
+
+					</cell>
+
+
+					<cell sclass="row-title">
+						<label style="color: red" value="*" />
+						Nome responsável:
+					</cell>
+					<cell>
+						<textbox value="@bind(fx.nome_supervisor)" />
+					</cell>
+
+				</row>
+				<row>
+					<cell sclass="row-title">
+						<label style="color: red" value="*" />
+						Empresa:
+					</cell>
+					<cell>
+
+						<hlayout>
+							<textbox id="nomeEmpresa" tabbable="true"
+								disabled="true" tabindex="11" />
+							<button image="/widgets/images/lupa.png"
+								onClick="@command('buscarEmpresa')" />
+						</hlayout>
+
+					</cell>
+
+					<cell sclass="row-title">
+						<label style="color: red" value="*" />
+						Cpf responsável:
+					</cell>
+					<cell>
+						<textbox id="fldCGC"
+							value="@bind(fx.cpf_supervisor)" />
+					</cell>
+
+				</row>
+
+				<row>
+
+					<cell sclass="row-title">
+						<label style="color: red" value="*" />
+						Data inicio:
+					</cell>
+					<cell>
+						<datebox value="@bind(fx.data_inicio)"
+							format="dd/MM/yyyy" locale="pt_BR" placeholder="DD/MM/YYYY" />
+					</cell>
+
+					<cell sclass="row-title">
+						<label style="color: red" value="*" />
+						Email:
+					</cell>
+					<cell>
+						<textbox placeholder="email@email.com"
+							value="@bind(fx.email_supervisor)" />
+					</cell>
+
+				</row>
+
+				<row>
+					<cell sclass="row-title">
+						<label style="color: red" value="*" />
+						Data fim:
+					</cell>
+					<cell>
+						<datebox value="@bind(fx.data_fim)"
+							format="dd/MM/yyyy" locale="pt_BR" placeholder="DD/MM/YYYY" />
+					</cell>
+				</row>
+
+				<row>
+					<cell>
+						<button label="Cancelar"
+							onClick="@command('fecharWindow')" width="100px" height="30px" />
+					</cell>
+					<cell>
+						<button label="Salvar"
+							onClick="@command('salvar')" width="100px" height="30px" />
+					</cell>
+
+					<cell sclass="row-title" style="color: red">
+						* Campos obrigatórios
+					</cell>
+				</row>
+			</rows>
+		</grid>
+		<window autag="true" popup="true" border="normal"
+			id="windowEstagiario" visible="false" title="Pesquisar estagiario"
+			width="600px" height="450px">
+			<hbox align="center">
+				<textbox value="@bind(vm.parametro)" />
+				<button label="pesquisar"
+					image="/widgets/images/pesquisa.jpg"
+					onClick="@command('getEstagiarioList')" />
+			</hbox>
+			<listbox model="@bind(vm.estagiarioList)"
+				emptyMessage="Nenhum Estagiario Selecionado."
+				selectedItem="@bind(vm.estagiarioSelecionado)"
+				style="margin-top:10px" mold="paging" pageSize="7">
+				<listhead>
+					<listheader label="Nome" align="center"
+						sort="auto(nome)" />
+					<listheader label="Cpf" align="center"
+						sort="auto(cpf)" />
+				</listhead>
+				<template name="model">
+					<listitem>
+						<listcell label="@bind(each.nome)"></listcell>
+						<listcell label="@bind(each.cpf)"></listcell>
+					</listitem>
+				</template>
+			</listbox>
+			<hbox align="center">
+				<button label="cancelar" onClick="@command('close')" />
+				<button label="confirmar"
+					onClick="@command('confirmar')" />
+			</hbox>
+		</window>
+
+
+		<window autag="true" popup="true" border="normal"
+			id="windowEmpresa" visible="false" title="Pesquisar empresa"
+			width="600px" height="450px">
+			<hbox align="center">
+				<textbox value="@bind(vm.parametro)" />
+				<button label="pesquisar"
+					image="/widgets/images/pesquisa.jpg"
+					onClick="@command('getEmpresaList')" />
+			</hbox>
+			<listbox model="@bind(vm.empresaList)"
+				emptyMessage="Nenhuma Empresa Selecionado."
+				selectedItem="@bind(vm.empresaSelecionada)" style="margin-top:10px"
+				mold="paging" pageSize="7">
+				<listhead>
+					<listheader label="Nome" align="center"
+						sort="auto(nome)" />
+					<listheader label="Cnpj" align="center"
+						sort="auto(cnpj)" />
+				</listhead>
+				<template name="model">
+					<listitem>
+						<listcell label="@bind(each.nome)"></listcell>
+						<listcell label="@bind(each.cnpj)"></listcell>
+					</listitem>
+				</template>
+			</listbox>
+			<hbox align="center">
+				<button label="cancelar" onClick="@command('close')" />
+				<button label="confirmar"
+					onClick="@command('confirmar')" />
+			</hbox>
+		</window>
+	</div>
+	<script type="text/javascript">
+		zk.afterMount(function() { 
+		jq("$fldTel").mask("(99)9999-9999");
+		jq("$fldCGC").mask("999.999.999-99"); });
+	</script>
+</zk>

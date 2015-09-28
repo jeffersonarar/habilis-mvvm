@@ -53,7 +53,7 @@ public class ViewModelComponent {
 	
 	@Command
 	public void redirectContrato(){
-		Executions.sendRedirect("/paginas/contrato/listar.zul");
+		Executions.sendRedirect("/paginas/contratoestagio/listar.zul");
 	}
 }
 

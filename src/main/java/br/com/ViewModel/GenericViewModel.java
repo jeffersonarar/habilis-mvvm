@@ -1,23 +1,31 @@
 package br.com.ViewModel;
 
-
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-
-
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.export.JRPdfExporterParameter;
+import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
 
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
+import org.zkoss.zhtml.Filedownload;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Window;
-
-
-
 
 import br.com.Controller.GenericController;
 import br.com.Interface.IViewModel;
@@ -26,8 +34,8 @@ import br.com.core.Interface.IModel;
 import br.com.core.Model.Matriz;
 import br.com.core.Util.Retorno;
 
-public abstract class GenericViewModel<M extends IModel<?>, C extends GenericController<M>> extends CRUDComponents
-		implements IViewModel {
+public abstract class GenericViewModel<M extends IModel<?>, C extends GenericController<M>>
+		extends CRUDComponents implements IViewModel {
 
 	private M entity;
 	protected M selectedEntity;
@@ -40,6 +48,8 @@ public abstract class GenericViewModel<M extends IModel<?>, C extends GenericCon
 	private String recordMode;
 	private List<?> entityList;
 	private Matriz matriz;
+	
+	
 	protected abstract void save(IModel<?> imodel);
 
 	@Command
@@ -62,9 +72,6 @@ public abstract class GenericViewModel<M extends IModel<?>, C extends GenericCon
 
 	MensagemNotificacao msgNotificacao = new MensagemNotificacao();
 
-	
-
-	
 	@Command
 	public void novo() {
 		String nomeClasse = getEntity().getNameClass().toLowerCase();
@@ -77,19 +84,87 @@ public abstract class GenericViewModel<M extends IModel<?>, C extends GenericCon
 		save(getEntity());
 		if (getSelectedEntity() != null) {
 			ret = getControl().alterar(getSelectedEntity());
-			if(ret.isValid() != true){
-				msgNotificacao.mensagem(ret.gettipoMensagem(), ret.getMensagem());
-			}else{
-				msgNotificacao.mensagem(ret.gettipoMensagem(), ret.getMensagem());
+			if (ret.isValid() != true) {
+				msgNotificacao.mensagem(ret.gettipoMensagem(),
+						ret.getMensagem());
+			} else {
+				msgNotificacao.mensagem(ret.gettipoMensagem(),
+						ret.getMensagem());
 				fecharWindow();
 			}
-			
+
 		} else {
 			ret = getControl().salvar(getEntity());
 			msgNotificacao.mensagem(ret.gettipoMensagem(), ret.getMensagem());
 		}
 
 		return ret;
+	}
+
+	public void gerarRelatorioPDF(String nomeArquivoJrxml, List<?> lista,
+			String nomeRelatorio) throws JRException {
+		try {
+			JRPdfExporter exporter = new JRPdfExporter();
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			JasperReport jr = JasperCompileManager.compileReport(Executions
+					.getCurrent().getSession().getWebApp()
+					.getRealPath("/relatorios/" + nomeArquivoJrxml + ".jrxml"));
+			JasperPrint jp = JasperFillManager.fillReport(jr, null,
+					new JRBeanCollectionDataSource(lista));
+
+			exporter.setParameter(JRExporterParameter.JASPER_PRINT, jp);
+			exporter.setParameter(JRExporterParameter.OUTPUT_STREAM,
+					outputStream);
+			exporter.setParameter(
+					JRPdfExporterParameter.IS_CREATING_BATCH_MODE_BOOKMARKS,
+					Boolean.TRUE);
+			exporter.exportReport();
+			Filedownload.save(
+					new ByteArrayInputStream(outputStream.toByteArray()),
+					"application/pdf", "" + nomeRelatorio + ".pdf");
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void gerarRelatorioXLS(String nomeArquivoJrxml, List<?> lista,
+			String nomeRelatorio) throws JRException {
+		try {
+			JRXlsExporter xls = new JRXlsExporter();
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			JasperReport jr = JasperCompileManager.compileReport(Executions
+					.getCurrent().getSession().getWebApp()
+					.getRealPath("/relatorios/" + nomeArquivoJrxml + ".jrxml"));
+			JasperPrint jp = JasperFillManager.fillReport(jr, null,
+					new JRBeanCollectionDataSource(lista));
+
+			xls.setParameter(JRXlsExporterParameter.JASPER_PRINT, jp);
+			xls.setParameter(JRExporterParameter.OUTPUT_STREAM,
+					outputStream);
+			xls.setParameter(JRXlsExporterParameter.IS_DETECT_CELL_TYPE,
+					Boolean.TRUE);
+			xls.setParameter(
+					JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS,
+					Boolean.TRUE);
+
+			xls.setParameter(JRXlsExporterParameter.MAXIMUM_ROWS_PER_SHEET,
+					Integer.decode("65000"));
+			xls.setParameter(JRXlsExporterParameter.IS_DETECT_CELL_TYPE,
+					Boolean.TRUE);
+			xls.setParameter(JRXlsExporterParameter.IS_WHITE_PAGE_BACKGROUND,
+					Boolean.FALSE);
+			xls.setParameter(
+					JRXlsExporterParameter.IS_REMOVE_EMPTY_SPACE_BETWEEN_ROWS,
+					Boolean.TRUE);
+			xls.exportReport();
+			Filedownload.save(
+					new ByteArrayInputStream(outputStream.toByteArray()),
+					"application/xls", "" + nomeRelatorio + ".xls");
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -100,11 +175,11 @@ public abstract class GenericViewModel<M extends IModel<?>, C extends GenericCon
 		if (selectedEntity == null) {
 			Messagebox.show("Selecione um item para ser deletado!", "Error",
 					Messagebox.OK, Messagebox.EXCLAMATION);
-		} else if(selectedEntity.getAtivo() == false){
-			Messagebox.show("Item já estava desativo!", "Aviso",
-					Messagebox.OK, Messagebox.EXCLAMATION);
+		} else if (selectedEntity.getAtivo() == false) {
+			Messagebox.show("Item já estava desativo!", "Aviso", Messagebox.OK,
+					Messagebox.EXCLAMATION);
 		} else {
-			String str = "Deseja desativar "+ getEntity().toString()+" ?";
+			String str = "Deseja desativar " + getEntity().toString() + " ?";
 			Messagebox.show(str, "Confirm", Messagebox.YES | Messagebox.NO,
 					Messagebox.QUESTION, new EventListener() {
 
@@ -144,7 +219,7 @@ public abstract class GenericViewModel<M extends IModel<?>, C extends GenericCon
 		}
 
 	}
-	
+
 	@Command
 	public void fecharWindow() {
 		String nomeClasse = getEntity().getNameClass().toLowerCase();
@@ -210,7 +285,6 @@ public abstract class GenericViewModel<M extends IModel<?>, C extends GenericCon
 	public void setAtivos(boolean ativos) {
 		this.ativos = ativos;
 	}
-	
 
 	public Window getWin() {
 		return win;

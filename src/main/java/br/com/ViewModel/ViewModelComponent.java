@@ -28,7 +28,7 @@ public class ViewModelComponent {
 	
 	@Command
 	public void redirectConfiguracoes(){
-		Executions.sendRedirect("/paginas/configuracoes/listar.zul");
+		Executions.sendRedirect("/paginas/configuracao/cadastrar.zul");
 	}
 	
 	@Command
@@ -38,7 +38,7 @@ public class ViewModelComponent {
 	
 	@Command
 	public void redirectRelatorios(){
-		Executions.sendRedirect("/paginas/relatorios/listar.zul");
+		Executions.sendRedirect("/paginas/relatorios/listarDisciplinas.zul");
 	}
 	
 	@Command

@@ -11,7 +11,7 @@
 		<zkcharts.version>1.2.0-Eval</zkcharts.version>
 		<maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
 	</properties>
-	
+
 	<repositories>
 		<repository>
 			<id>zk repository</id>
@@ -29,19 +29,19 @@
 	</repositories>
 
 	<dependencies>
-	   <dependency>
+		<dependency>
 			<groupId>habilis-bunisses</groupId>
 			<artifactId>habilis-bunisses</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-	
-	
+
+
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity</artifactId>
 			<version>1.6</version>
 		</dependency>
-	    <!-- CE requirements -->      
+		<!-- CE requirements -->
 		<dependency>
 			<groupId>org.zkoss.zk</groupId>
 			<artifactId>zk</artifactId>
@@ -82,7 +82,7 @@
 			<artifactId>zkbind</artifactId>
 			<version>${zk.version}</version>
 		</dependency>
-		
+
 		<!-- PE & EE requirements -->
 		<dependency>
 			<groupId>org.zkoss.zk</groupId>
@@ -100,13 +100,13 @@
 			<version>${zk.version}</version>
 		</dependency>
 
-		<!-- ZK Charts-->
+		<!-- ZK Charts -->
 		<dependency>
 			<groupId>org.zkoss.chart</groupId>
 			<artifactId>zkcharts</artifactId>
 			<version>${zkcharts.version}</version>
 		</dependency>
-		
+
 		<!-- ZK Graphics -->
 		<dependency>
 			<groupId>org.zkoss.graphics</groupId>
@@ -144,7 +144,7 @@
 		<dependency>
 			<groupId>org.zkoss.pivot</groupId>
 			<artifactId>pivottable</artifactId>
- 			<version>2.2.0-Eval</version>
+			<version>2.2.0-Eval</version>
 		</dependency>
 
 		<!-- Themes -->
@@ -219,7 +219,7 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>4.0.1</version>
+			<version>5.0.1</version>
 		</dependency>
 
 		<!-- JFreeChart -->

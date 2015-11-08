@@ -1,0 +1,64 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/template.zul"?>
+
+<zk>
+	<div self="@define(content)" apply="org.zkoss.bind.BindComposer"
+		style="position: relative; top: 30px"
+		viewModel="@id('vm') @init('br.com.ViewModel.AtividadesRealizadasViewModel')"
+		align="center">
+		<vlayout style="top: 40% ">
+			<label value="Relatório das diciplinas com mais associações"
+				style="font-size: 30px;" />
+			<div>
+				<hbox align="center">
+					<label value="Ativos" />
+
+					<textbox value="@bind(vm.nomeDisciplina)" />
+					<button image="/widgets/images/lupa.png"
+						onClick="@command('listarDisciplinas')" />
+				</hbox>
+			</div>
+			<listbox model="@bind(vm.lstAtividadesRealizadas)"
+				emptyMessage="Nenhuma disciplina encontrada." width="900px"
+				selectedItem="@bind(vm.selectedDisciplina)" style="margin-top:10px"
+				mold="paging" pageSize="5">
+				<listhead>
+					<listheader label="Matriz" align="center"
+						width="100px" sort="auto(matriz.nome)" />
+					<listheader label="Periodo" align="center"
+						width="60px" sort="auto(periodo)" />
+					<listheader label="Disciplinas" align="center"
+						sort="auto(nome)" />
+
+					<listheader label="Qtd" align="center" width="60px"
+						sort="auto(nome)" />
+
+					<listheader label="" align="center" width="200px" />
+
+				</listhead>
+				<template name="model">
+					<listitem>
+						<listcell label="@bind(each.matriz.nome)"></listcell>
+						<listcell label="@bind(each.periodo)"></listcell>
+						<listcell label="@bind(each.nome)"></listcell>
+						<listcell label="@bind(each.qtd)"></listcell>
+						<listcell>
+
+							<button image="/widgets/images/conteudo.jpg"
+								onClick="@command('listarConteudos') @global-command('refresh')" />
+							<button
+								image="/widgets/images/atividade.jpg"
+								onClick="@command('listarAtividades') @global-command('refresh')" />
+						</listcell>
+
+					</listitem>
+				</template>
+			</listbox>
+			<hbox align="rigth">
+				<button image="/widgets/images/pdf.png"
+					onClick="@command('gerarPDF',  arg1='disciplinas')" />
+				<button image="/widgets/images/excel.png"
+					onClick="@command('gerarXLS',  arg1='disciplinas')" />
+			</hbox>
+		</vlayout>
+	</div>
+</zk>

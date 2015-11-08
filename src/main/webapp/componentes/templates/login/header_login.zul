@@ -1,0 +1,8 @@
+<zk>
+	<borderlayout id="cabecalho" style="width:100%; height:95px; background-color: #221515;">
+		<center vflex="min"  id="center" border="none" flex="true" sclass="header" style="background-color: #221515;">
+				<label style="color: white; font-weight: bold;
+			font-family: 'Trebuchet MS'; font-size: 50px; text-align : center; display:inline-block ">NEXT - Estágio interativo</label>
+		</center>
+	</borderlayout>
+</zk>

@@ -14,12 +14,14 @@ import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.Selectors;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Messagebox;
 import org.zkoss.zul.Window;
 
 import br.com.Controller.EstagiarioController;
 import br.com.Controller.GenericController;
 import br.com.Controller.MatrizController;
+import br.com.core.Enum.TipoMensagem;
 import br.com.core.Interface.IModel;
 import br.com.core.Model.Empresa;
 import br.com.core.Model.Estagiario;
@@ -93,6 +95,17 @@ public class EstagiarioViewModel extends GenericViewModel<Estagiario, Estagiario
 
 	public List<?> getEstagiarioList() {
 		return estagiarioList;
+	}
+	
+	
+	@Command
+	public void solicitar(){
+		Retorno ret = getControl().buscarSolicitacao(getEntity());
+		if(ret.isValid() == true){
+			msgNotificacao.mensagem(TipoMensagem.SUCESSO, "Uma nova senha foi enviada para seu email!");
+		}else{
+			msgNotificacao.mensagem(ret.gettipoMensagem(), ret.getMensagem());
+		}
 	}
 
 	@Command

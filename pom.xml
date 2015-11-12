@@ -34,7 +34,11 @@
 			<artifactId>habilis-bunisses</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-
+		<dependency>
+			<groupId>habilis-core</groupId>
+			<artifactId>habilis-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.velocity</groupId>

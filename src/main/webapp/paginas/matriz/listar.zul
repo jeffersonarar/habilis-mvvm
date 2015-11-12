@@ -15,7 +15,7 @@
 					<textbox value="@bind(vm.parametro)" />
 					<button image="/widgets/images/lupa.png"
 						onClick="@command('listar')" />
-					<fbutton
+					<button
 						onClick="@command('novo')" label="Novo" />
 
 				</hbox>

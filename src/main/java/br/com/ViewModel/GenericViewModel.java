@@ -219,6 +219,9 @@ public abstract class GenericViewModel<M extends IModel<?>, C extends GenericCon
 		}
 
 	}
+	
+	
+	
 
 	@Command
 	public void fecharWindow() {

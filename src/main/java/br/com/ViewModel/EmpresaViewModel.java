@@ -92,6 +92,7 @@ public class EmpresaViewModel extends GenericViewModel {
 	@NotifyChange("empresaList")
 	public List<IModel<?>> listar() {
 		empresaList = super.listar(getEntity());
+		
 		return (List<IModel<?>>) empresaList;
 	}
 

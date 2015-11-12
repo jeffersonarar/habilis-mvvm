@@ -1,0 +1,98 @@
+<zk>
+	<script type="text/javascript" src="/scripts/jquery.maskedinput.js" />
+	<borderlayout hflex="1" vflex="1" style="-moz-border-radius: 8px;"
+		height="200px">
+		<north class="menu" autoscroll="true" border="none"
+			size="100px">
+			<div height="100%">
+				<div height="60%" style="background: #1C1C1C">
+					<label sclass="tituloBanner"
+						style="position: relative; left: 30px; font-size: 45px; font-weight:bold; font-family:sans-serif; color:#FFFFFF"
+						value="next" />
+				</div>
+				<div height="15%" style="background:#FFFFFF">
+
+				</div>
+				<div height="25%" style="background:#DCDCDC">
+
+				</div>
+			</div>
+		</north>
+		<center id="mainContent"
+			style="background:  #FFFFFF; heigth:80px; position: center"
+			border="none">
+			<div self="@define(content)" align="center"
+				style="position: relative; top: 30px"
+				apply="org.zkoss.bind.BindComposer"
+				viewModel="@id('vm')@init('br.com.ViewModel.EstagiarioViewModel')"
+				validationMessages="@id('vmsgs')"
+				form="@id('fx') @load(vm.entity) @save(vm.entity, before='solicitar')">
+				<grid width="423px" height="300px" sizedByContent="true"
+					style=" top: 2px;">
+					<auxhead>
+						<auxheader label="Solicitação da mudança da senha" align="center"
+							colspan="5" />
+					</auxhead>
+					<columns>
+						<column width="" align="center"></column>
+						<column align="left"></column>
+					</columns>
+					<rows>
+						<row>
+							<cell sclass="row-title" align="letf">
+								<label style="color: red" value="*" />
+								Usuário:
+							</cell>
+							<cell>
+								<textbox value="@bind(fx.cpf)" />
+							</cell>
+
+						</row>
+						<row>
+						
+							<cell sclass="row-title" align="letf">
+							<label style="color: red" value="*" />
+								Email:
+							</cell>
+							<cell>
+								<textbox 
+									value="@bind(fx.email)" />
+							</cell>
+						</row>
+
+
+						<row>
+							<cell sclass="row-title"></cell>
+							<cell sclass="row-title" style="color: red"
+								align="right">
+								* Campos obrigatórios
+							</cell>
+						</row>
+						<row>
+							<cell>
+								<button label="Solicitar"
+									onClick="@command('solicitar')" width="100px" height="30px" />
+							</cell>
+							<cell>
+								<button label="Cancelar"
+									onClick="@command('salvar')" width="100px" height="30px" />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+
+
+
+			</div>
+
+		</center>
+
+		<south border="none" class="footer" size="20px"
+			style="background:#CDCDC1; heigth:10%">
+			<div align="center">
+				<label
+					value="Next @2015. Todos os direitos reservados." />
+			</div>
+		</south>
+	</borderlayout>
+</zk>

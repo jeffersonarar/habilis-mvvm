@@ -1,0 +1,9 @@
+<zk>
+<window autag="true" popup="true" border="normal"
+	
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm')@init('br.com.ViewModel.AtividadesRealizadasViewModel')"
+		title="Atividades com mais associações"> 
+New Content Here!
+</window>
+</zk>
